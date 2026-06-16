@@ -15,3 +15,20 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const ReceiveLeads = {
+  email: 'email',
+  whatsapp: 'whatsapp'
+} as const
+
+export type ReceiveLeads = (typeof ReceiveLeads)[keyof typeof ReceiveLeads]
+
+
+export const Status = {
+  ACTIVE: 'ACTIVE',
+  DEACTIVE: 'DEACTIVE',
+  HOLD: 'HOLD'
+} as const
+
+export type Status = (typeof Status)[keyof typeof Status]

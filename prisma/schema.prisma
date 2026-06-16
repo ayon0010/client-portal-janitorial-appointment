@@ -20,14 +20,56 @@ enum Role {
 }
 
 model User {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  companyName   String
-  firstName     String
-  lastName      String
-  email         String
-  hasedPassword String
-  years         Float
-  contract      Boolean @default(true)
-  phoneNumber   String
-  role          Role    @default(USER)
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  firstName   String
+  lastName    String
+  companyName String
+
+  website String?
+
+  primaryState String
+  primaryCity  String?
+
+  zipCodes String[] // comma separated or JSON string
+
+  dncList String?
+
+  contactNumber  String
+  whatsappNumber String?
+
+  receiveLeads ReceiveLeads
+
+  years Int
+
+  email          String @unique
+  hashedPassword String
+
+  leadNumber Int
+  note       String?
+  requirment String?
+
+  max String?
+
+  avatar String? // ImageBB URL
+
+  status   Status  @default(ACTIVE)
+  contract Boolean
+  payment  Boolean
+
+  issue String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ReceiveLeads {
+  email
+  whatsapp
+}
+
+enum Status {
+  ACTIVE
+  DEACTIVE
+  HOLD
 }

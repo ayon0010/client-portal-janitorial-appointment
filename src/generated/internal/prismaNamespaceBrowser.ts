@@ -60,15 +60,31 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  companyName: 'companyName',
   firstName: 'firstName',
   lastName: 'lastName',
-  email: 'email',
-  hasedPassword: 'hasedPassword',
+  companyName: 'companyName',
+  website: 'website',
+  primaryState: 'primaryState',
+  primaryCity: 'primaryCity',
+  zipCodes: 'zipCodes',
+  dncList: 'dncList',
+  contactNumber: 'contactNumber',
+  whatsappNumber: 'whatsappNumber',
+  receiveLeads: 'receiveLeads',
   years: 'years',
+  email: 'email',
+  hashedPassword: 'hashedPassword',
+  leadNumber: 'leadNumber',
+  note: 'note',
+  requirment: 'requirment',
+  max: 'max',
+  avatar: 'avatar',
+  status: 'status',
   contract: 'contract',
-  phoneNumber: 'phoneNumber',
-  role: 'role'
+  payment: 'payment',
+  issue: 'issue',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

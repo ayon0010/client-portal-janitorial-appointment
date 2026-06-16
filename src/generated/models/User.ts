@@ -28,98 +28,194 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   years: number | null
+  leadNumber: number | null
 }
 
 export type UserSumAggregateOutputType = {
   years: number | null
+  leadNumber: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: string | null
-  companyName: string | null
   firstName: string | null
   lastName: string | null
-  email: string | null
-  hasedPassword: string | null
+  companyName: string | null
+  website: string | null
+  primaryState: string | null
+  primaryCity: string | null
+  dncList: string | null
+  contactNumber: string | null
+  whatsappNumber: string | null
+  receiveLeads: $Enums.ReceiveLeads | null
   years: number | null
+  email: string | null
+  hashedPassword: string | null
+  leadNumber: number | null
+  note: string | null
+  requirment: string | null
+  max: string | null
+  avatar: string | null
+  status: $Enums.Status | null
   contract: boolean | null
-  phoneNumber: string | null
-  role: $Enums.Role | null
+  payment: boolean | null
+  issue: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
-  companyName: string | null
   firstName: string | null
   lastName: string | null
-  email: string | null
-  hasedPassword: string | null
+  companyName: string | null
+  website: string | null
+  primaryState: string | null
+  primaryCity: string | null
+  dncList: string | null
+  contactNumber: string | null
+  whatsappNumber: string | null
+  receiveLeads: $Enums.ReceiveLeads | null
   years: number | null
+  email: string | null
+  hashedPassword: string | null
+  leadNumber: number | null
+  note: string | null
+  requirment: string | null
+  max: string | null
+  avatar: string | null
+  status: $Enums.Status | null
   contract: boolean | null
-  phoneNumber: string | null
-  role: $Enums.Role | null
+  payment: boolean | null
+  issue: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
-  companyName: number
   firstName: number
   lastName: number
-  email: number
-  hasedPassword: number
+  companyName: number
+  website: number
+  primaryState: number
+  primaryCity: number
+  zipCodes: number
+  dncList: number
+  contactNumber: number
+  whatsappNumber: number
+  receiveLeads: number
   years: number
+  email: number
+  hashedPassword: number
+  leadNumber: number
+  note: number
+  requirment: number
+  max: number
+  avatar: number
+  status: number
   contract: number
-  phoneNumber: number
-  role: number
+  payment: number
+  issue: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   years?: true
+  leadNumber?: true
 }
 
 export type UserSumAggregateInputType = {
   years?: true
+  leadNumber?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
-  companyName?: true
   firstName?: true
   lastName?: true
-  email?: true
-  hasedPassword?: true
+  companyName?: true
+  website?: true
+  primaryState?: true
+  primaryCity?: true
+  dncList?: true
+  contactNumber?: true
+  whatsappNumber?: true
+  receiveLeads?: true
   years?: true
+  email?: true
+  hashedPassword?: true
+  leadNumber?: true
+  note?: true
+  requirment?: true
+  max?: true
+  avatar?: true
+  status?: true
   contract?: true
-  phoneNumber?: true
-  role?: true
+  payment?: true
+  issue?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
-  companyName?: true
   firstName?: true
   lastName?: true
-  email?: true
-  hasedPassword?: true
+  companyName?: true
+  website?: true
+  primaryState?: true
+  primaryCity?: true
+  dncList?: true
+  contactNumber?: true
+  whatsappNumber?: true
+  receiveLeads?: true
   years?: true
+  email?: true
+  hashedPassword?: true
+  leadNumber?: true
+  note?: true
+  requirment?: true
+  max?: true
+  avatar?: true
+  status?: true
   contract?: true
-  phoneNumber?: true
-  role?: true
+  payment?: true
+  issue?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
-  companyName?: true
   firstName?: true
   lastName?: true
-  email?: true
-  hasedPassword?: true
+  companyName?: true
+  website?: true
+  primaryState?: true
+  primaryCity?: true
+  zipCodes?: true
+  dncList?: true
+  contactNumber?: true
+  whatsappNumber?: true
+  receiveLeads?: true
   years?: true
+  email?: true
+  hashedPassword?: true
+  leadNumber?: true
+  note?: true
+  requirment?: true
+  max?: true
+  avatar?: true
+  status?: true
   contract?: true
-  phoneNumber?: true
-  role?: true
+  payment?: true
+  issue?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -211,15 +307,31 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
-  companyName: string
   firstName: string
   lastName: string
-  email: string
-  hasedPassword: string
+  companyName: string
+  website: string | null
+  primaryState: string
+  primaryCity: string | null
+  zipCodes: string[]
+  dncList: string | null
+  contactNumber: string
+  whatsappNumber: string | null
+  receiveLeads: $Enums.ReceiveLeads
   years: number
+  email: string
+  hashedPassword: string
+  leadNumber: number
+  note: string | null
+  requirment: string | null
+  max: string | null
+  avatar: string | null
+  status: $Enums.Status
   contract: boolean
-  phoneNumber: string
-  role: $Enums.Role
+  payment: boolean
+  issue: string | null
+  createdAt: Date
+  updatedAt: Date
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -247,57 +359,121 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
-  companyName?: Prisma.StringFilter<"User"> | string
   firstName?: Prisma.StringFilter<"User"> | string
   lastName?: Prisma.StringFilter<"User"> | string
+  companyName?: Prisma.StringFilter<"User"> | string
+  website?: Prisma.StringNullableFilter<"User"> | string | null
+  primaryState?: Prisma.StringFilter<"User"> | string
+  primaryCity?: Prisma.StringNullableFilter<"User"> | string | null
+  zipCodes?: Prisma.StringNullableListFilter<"User">
+  dncList?: Prisma.StringNullableFilter<"User"> | string | null
+  contactNumber?: Prisma.StringFilter<"User"> | string
+  whatsappNumber?: Prisma.StringNullableFilter<"User"> | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFilter<"User"> | $Enums.ReceiveLeads
+  years?: Prisma.IntFilter<"User"> | number
   email?: Prisma.StringFilter<"User"> | string
-  hasedPassword?: Prisma.StringFilter<"User"> | string
-  years?: Prisma.FloatFilter<"User"> | number
+  hashedPassword?: Prisma.StringFilter<"User"> | string
+  leadNumber?: Prisma.IntFilter<"User"> | number
+  note?: Prisma.StringNullableFilter<"User"> | string | null
+  requirment?: Prisma.StringNullableFilter<"User"> | string | null
+  max?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableFilter<"User"> | string | null
+  status?: Prisma.EnumStatusFilter<"User"> | $Enums.Status
   contract?: Prisma.BoolFilter<"User"> | boolean
-  phoneNumber?: Prisma.StringFilter<"User"> | string
-  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  payment?: Prisma.BoolFilter<"User"> | boolean
+  issue?: Prisma.StringNullableFilter<"User"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  companyName?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasedPassword?: Prisma.SortOrder
+  companyName?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  primaryState?: Prisma.SortOrder
+  primaryCity?: Prisma.SortOrder
+  zipCodes?: Prisma.SortOrder
+  dncList?: Prisma.SortOrder
+  contactNumber?: Prisma.SortOrder
+  whatsappNumber?: Prisma.SortOrder
+  receiveLeads?: Prisma.SortOrder
   years?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  requirment?: Prisma.SortOrder
+  max?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   contract?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  payment?: Prisma.SortOrder
+  issue?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  companyName?: Prisma.StringFilter<"User"> | string
   firstName?: Prisma.StringFilter<"User"> | string
   lastName?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  hasedPassword?: Prisma.StringFilter<"User"> | string
-  years?: Prisma.FloatFilter<"User"> | number
+  companyName?: Prisma.StringFilter<"User"> | string
+  website?: Prisma.StringNullableFilter<"User"> | string | null
+  primaryState?: Prisma.StringFilter<"User"> | string
+  primaryCity?: Prisma.StringNullableFilter<"User"> | string | null
+  zipCodes?: Prisma.StringNullableListFilter<"User">
+  dncList?: Prisma.StringNullableFilter<"User"> | string | null
+  contactNumber?: Prisma.StringFilter<"User"> | string
+  whatsappNumber?: Prisma.StringNullableFilter<"User"> | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFilter<"User"> | $Enums.ReceiveLeads
+  years?: Prisma.IntFilter<"User"> | number
+  hashedPassword?: Prisma.StringFilter<"User"> | string
+  leadNumber?: Prisma.IntFilter<"User"> | number
+  note?: Prisma.StringNullableFilter<"User"> | string | null
+  requirment?: Prisma.StringNullableFilter<"User"> | string | null
+  max?: Prisma.StringNullableFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableFilter<"User"> | string | null
+  status?: Prisma.EnumStatusFilter<"User"> | $Enums.Status
   contract?: Prisma.BoolFilter<"User"> | boolean
-  phoneNumber?: Prisma.StringFilter<"User"> | string
-  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
-}, "id">
+  payment?: Prisma.BoolFilter<"User"> | boolean
+  issue?: Prisma.StringNullableFilter<"User"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+}, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  companyName?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasedPassword?: Prisma.SortOrder
+  companyName?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  primaryState?: Prisma.SortOrder
+  primaryCity?: Prisma.SortOrder
+  zipCodes?: Prisma.SortOrder
+  dncList?: Prisma.SortOrder
+  contactNumber?: Prisma.SortOrder
+  whatsappNumber?: Prisma.SortOrder
+  receiveLeads?: Prisma.SortOrder
   years?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  requirment?: Prisma.SortOrder
+  max?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   contract?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  payment?: Prisma.SortOrder
+  issue?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -310,156 +486,358 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
-  companyName?: Prisma.StringWithAggregatesFilter<"User"> | string
   firstName?: Prisma.StringWithAggregatesFilter<"User"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"User"> | string
+  companyName?: Prisma.StringWithAggregatesFilter<"User"> | string
+  website?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  primaryState?: Prisma.StringWithAggregatesFilter<"User"> | string
+  primaryCity?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  zipCodes?: Prisma.StringNullableListFilter<"User">
+  dncList?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  contactNumber?: Prisma.StringWithAggregatesFilter<"User"> | string
+  whatsappNumber?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsWithAggregatesFilter<"User"> | $Enums.ReceiveLeads
+  years?: Prisma.IntWithAggregatesFilter<"User"> | number
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  hasedPassword?: Prisma.StringWithAggregatesFilter<"User"> | string
-  years?: Prisma.FloatWithAggregatesFilter<"User"> | number
+  hashedPassword?: Prisma.StringWithAggregatesFilter<"User"> | string
+  leadNumber?: Prisma.IntWithAggregatesFilter<"User"> | number
+  note?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  requirment?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  max?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  status?: Prisma.EnumStatusWithAggregatesFilter<"User"> | $Enums.Status
   contract?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  phoneNumber?: Prisma.StringWithAggregatesFilter<"User"> | string
-  role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  payment?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  issue?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
 export type UserCreateInput = {
   id?: string
-  companyName: string
   firstName: string
   lastName: string
-  email: string
-  hasedPassword: string
+  companyName: string
+  website?: string | null
+  primaryState: string
+  primaryCity?: string | null
+  zipCodes?: Prisma.UserCreatezipCodesInput | string[]
+  dncList?: string | null
+  contactNumber: string
+  whatsappNumber?: string | null
+  receiveLeads: $Enums.ReceiveLeads
   years: number
-  contract?: boolean
-  phoneNumber: string
-  role?: $Enums.Role
+  email: string
+  hashedPassword: string
+  leadNumber: number
+  note?: string | null
+  requirment?: string | null
+  max?: string | null
+  avatar?: string | null
+  status?: $Enums.Status
+  contract: boolean
+  payment: boolean
+  issue?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
-  companyName: string
   firstName: string
   lastName: string
-  email: string
-  hasedPassword: string
+  companyName: string
+  website?: string | null
+  primaryState: string
+  primaryCity?: string | null
+  zipCodes?: Prisma.UserCreatezipCodesInput | string[]
+  dncList?: string | null
+  contactNumber: string
+  whatsappNumber?: string | null
+  receiveLeads: $Enums.ReceiveLeads
   years: number
-  contract?: boolean
-  phoneNumber: string
-  role?: $Enums.Role
+  email: string
+  hashedPassword: string
+  leadNumber: number
+  note?: string | null
+  requirment?: string | null
+  max?: string | null
+  avatar?: string | null
+  status?: $Enums.Status
+  contract: boolean
+  payment: boolean
+  issue?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateInput = {
-  companyName?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
+  dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
+  years?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  hasedPassword?: Prisma.StringFieldUpdateOperationsInput | string
-  years?: Prisma.FloatFieldUpdateOperationsInput | number
+  hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requirment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateInput = {
-  companyName?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
+  dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
+  years?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  hasedPassword?: Prisma.StringFieldUpdateOperationsInput | string
-  years?: Prisma.FloatFieldUpdateOperationsInput | number
+  hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requirment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserCreateManyInput = {
   id?: string
-  companyName: string
   firstName: string
   lastName: string
-  email: string
-  hasedPassword: string
+  companyName: string
+  website?: string | null
+  primaryState: string
+  primaryCity?: string | null
+  zipCodes?: Prisma.UserCreatezipCodesInput | string[]
+  dncList?: string | null
+  contactNumber: string
+  whatsappNumber?: string | null
+  receiveLeads: $Enums.ReceiveLeads
   years: number
-  contract?: boolean
-  phoneNumber: string
-  role?: $Enums.Role
+  email: string
+  hashedPassword: string
+  leadNumber: number
+  note?: string | null
+  requirment?: string | null
+  max?: string | null
+  avatar?: string | null
+  status?: $Enums.Status
+  contract: boolean
+  payment: boolean
+  issue?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
-  companyName?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
+  dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
+  years?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  hasedPassword?: Prisma.StringFieldUpdateOperationsInput | string
-  years?: Prisma.FloatFieldUpdateOperationsInput | number
+  hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requirment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserUncheckedUpdateManyInput = {
-  companyName?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
+  dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
+  years?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  hasedPassword?: Prisma.StringFieldUpdateOperationsInput | string
-  years?: Prisma.FloatFieldUpdateOperationsInput | number
+  hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requirment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  companyName?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasedPassword?: Prisma.SortOrder
+  companyName?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  primaryState?: Prisma.SortOrder
+  primaryCity?: Prisma.SortOrder
+  zipCodes?: Prisma.SortOrder
+  dncList?: Prisma.SortOrder
+  contactNumber?: Prisma.SortOrder
+  whatsappNumber?: Prisma.SortOrder
+  receiveLeads?: Prisma.SortOrder
   years?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  requirment?: Prisma.SortOrder
+  max?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   contract?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  payment?: Prisma.SortOrder
+  issue?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   years?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  companyName?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasedPassword?: Prisma.SortOrder
+  companyName?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  primaryState?: Prisma.SortOrder
+  primaryCity?: Prisma.SortOrder
+  dncList?: Prisma.SortOrder
+  contactNumber?: Prisma.SortOrder
+  whatsappNumber?: Prisma.SortOrder
+  receiveLeads?: Prisma.SortOrder
   years?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  requirment?: Prisma.SortOrder
+  max?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   contract?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  payment?: Prisma.SortOrder
+  issue?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  companyName?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasedPassword?: Prisma.SortOrder
+  companyName?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  primaryState?: Prisma.SortOrder
+  primaryCity?: Prisma.SortOrder
+  dncList?: Prisma.SortOrder
+  contactNumber?: Prisma.SortOrder
+  whatsappNumber?: Prisma.SortOrder
+  receiveLeads?: Prisma.SortOrder
   years?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
+  note?: Prisma.SortOrder
+  requirment?: Prisma.SortOrder
+  max?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   contract?: Prisma.SortOrder
-  phoneNumber?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  payment?: Prisma.SortOrder
+  issue?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   years?: Prisma.SortOrder
+  leadNumber?: Prisma.SortOrder
+}
+
+export type UserCreatezipCodesInput = {
+  set: string[]
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type FloatFieldUpdateOperationsInput = {
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+  unset?: boolean
+}
+
+export type UserUpdatezipCodesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type EnumReceiveLeadsFieldUpdateOperationsInput = {
+  set?: $Enums.ReceiveLeads
+}
+
+export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
   decrement?: number
@@ -467,60 +845,112 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: $Enums.Status
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
-export type EnumRoleFieldUpdateOperationsInput = {
-  set?: $Enums.Role
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  companyName?: boolean
   firstName?: boolean
   lastName?: boolean
-  email?: boolean
-  hasedPassword?: boolean
+  companyName?: boolean
+  website?: boolean
+  primaryState?: boolean
+  primaryCity?: boolean
+  zipCodes?: boolean
+  dncList?: boolean
+  contactNumber?: boolean
+  whatsappNumber?: boolean
+  receiveLeads?: boolean
   years?: boolean
+  email?: boolean
+  hashedPassword?: boolean
+  leadNumber?: boolean
+  note?: boolean
+  requirment?: boolean
+  max?: boolean
+  avatar?: boolean
+  status?: boolean
   contract?: boolean
-  phoneNumber?: boolean
-  role?: boolean
+  payment?: boolean
+  issue?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
 
 
 
 export type UserSelectScalar = {
   id?: boolean
-  companyName?: boolean
   firstName?: boolean
   lastName?: boolean
-  email?: boolean
-  hasedPassword?: boolean
+  companyName?: boolean
+  website?: boolean
+  primaryState?: boolean
+  primaryCity?: boolean
+  zipCodes?: boolean
+  dncList?: boolean
+  contactNumber?: boolean
+  whatsappNumber?: boolean
+  receiveLeads?: boolean
   years?: boolean
+  email?: boolean
+  hashedPassword?: boolean
+  leadNumber?: boolean
+  note?: boolean
+  requirment?: boolean
+  max?: boolean
+  avatar?: boolean
+  status?: boolean
   contract?: boolean
-  phoneNumber?: boolean
-  role?: boolean
+  payment?: boolean
+  issue?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyName" | "firstName" | "lastName" | "email" | "hasedPassword" | "years" | "contract" | "phoneNumber" | "role", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "companyName" | "website" | "primaryState" | "primaryCity" | "zipCodes" | "dncList" | "contactNumber" | "whatsappNumber" | "receiveLeads" | "years" | "email" | "hashedPassword" | "leadNumber" | "note" | "requirment" | "max" | "avatar" | "status" | "contract" | "payment" | "issue" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    companyName: string
     firstName: string
     lastName: string
-    email: string
-    hasedPassword: string
+    companyName: string
+    website: string | null
+    primaryState: string
+    primaryCity: string | null
+    zipCodes: string[]
+    dncList: string | null
+    contactNumber: string
+    whatsappNumber: string | null
+    receiveLeads: $Enums.ReceiveLeads
     years: number
+    email: string
+    hashedPassword: string
+    leadNumber: number
+    note: string | null
+    requirment: string | null
+    max: string | null
+    avatar: string | null
+    status: $Enums.Status
     contract: boolean
-    phoneNumber: string
-    role: $Enums.Role
+    payment: boolean
+    issue: string | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -914,15 +1344,31 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
-  readonly companyName: Prisma.FieldRef<"User", 'String'>
   readonly firstName: Prisma.FieldRef<"User", 'String'>
   readonly lastName: Prisma.FieldRef<"User", 'String'>
+  readonly companyName: Prisma.FieldRef<"User", 'String'>
+  readonly website: Prisma.FieldRef<"User", 'String'>
+  readonly primaryState: Prisma.FieldRef<"User", 'String'>
+  readonly primaryCity: Prisma.FieldRef<"User", 'String'>
+  readonly zipCodes: Prisma.FieldRef<"User", 'String[]'>
+  readonly dncList: Prisma.FieldRef<"User", 'String'>
+  readonly contactNumber: Prisma.FieldRef<"User", 'String'>
+  readonly whatsappNumber: Prisma.FieldRef<"User", 'String'>
+  readonly receiveLeads: Prisma.FieldRef<"User", 'ReceiveLeads'>
+  readonly years: Prisma.FieldRef<"User", 'Int'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly hasedPassword: Prisma.FieldRef<"User", 'String'>
-  readonly years: Prisma.FieldRef<"User", 'Float'>
+  readonly hashedPassword: Prisma.FieldRef<"User", 'String'>
+  readonly leadNumber: Prisma.FieldRef<"User", 'Int'>
+  readonly note: Prisma.FieldRef<"User", 'String'>
+  readonly requirment: Prisma.FieldRef<"User", 'String'>
+  readonly max: Prisma.FieldRef<"User", 'String'>
+  readonly avatar: Prisma.FieldRef<"User", 'String'>
+  readonly status: Prisma.FieldRef<"User", 'Status'>
   readonly contract: Prisma.FieldRef<"User", 'Boolean'>
-  readonly phoneNumber: Prisma.FieldRef<"User", 'String'>
-  readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly payment: Prisma.FieldRef<"User", 'Boolean'>
+  readonly issue: Prisma.FieldRef<"User", 'String'>
+  readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 

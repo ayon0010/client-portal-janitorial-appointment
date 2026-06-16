@@ -503,15 +503,31 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  companyName: 'companyName',
   firstName: 'firstName',
   lastName: 'lastName',
-  email: 'email',
-  hasedPassword: 'hasedPassword',
+  companyName: 'companyName',
+  website: 'website',
+  primaryState: 'primaryState',
+  primaryCity: 'primaryCity',
+  zipCodes: 'zipCodes',
+  dncList: 'dncList',
+  contactNumber: 'contactNumber',
+  whatsappNumber: 'whatsappNumber',
+  receiveLeads: 'receiveLeads',
   years: 'years',
+  email: 'email',
+  hashedPassword: 'hashedPassword',
+  leadNumber: 'leadNumber',
+  note: 'note',
+  requirment: 'requirment',
+  max: 'max',
+  avatar: 'avatar',
+  status: 'status',
   contract: 'contract',
-  phoneNumber: 'phoneNumber',
-  role: 'role'
+  payment: 'payment',
+  issue: 'issue',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -554,37 +570,16 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 
 
 /**
- * Reference to a field of type 'Float'
+ * Reference to a field of type 'ReceiveLeads'
  */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+export type EnumReceiveLeadsFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReceiveLeads'>
     
 
 
 /**
- * Reference to a field of type 'Float[]'
+ * Reference to a field of type 'ReceiveLeads[]'
  */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
- * Reference to a field of type 'Role'
- */
-export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
-    
-
-
-/**
- * Reference to a field of type 'Role[]'
- */
-export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+export type ListEnumReceiveLeadsFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReceiveLeads[]'>
     
 
 
@@ -599,6 +594,55 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Status'
+ */
+export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+/**
+ * Reference to a field of type 'Status[]'
+ */
+export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
