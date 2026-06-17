@@ -7,11 +7,11 @@ export const createUserSchema = z.object({
 
     website: z.string().optional(),
 
-    primaryState: z.string().min(1, "Primary state is required"),
+    // primaryState: z.string().min(1, "Primary state is required"),
 
-    primaryCity: z.string().optional(),
+    // primaryCity: z.string().optional(),
 
-    zipCodes: z.array(z.string().min(1)).min(1, "At least one zip code required"),
+    // zipCodes: z.array(z.string().min(1)).min(1, "At least one zip code required"),
 
     dncList: z.string().optional(),
 
@@ -39,7 +39,17 @@ export const createUserSchema = z.object({
 
     requirment: z.string().optional(),
 
-    max: z.string().optional()
+    max: z.string().optional(),
+
+    additionalStates: z.array(
+        z.object({
+            state: z.string().min(1, "State is required"),
+            city: z.string().min(1, "City is required"),
+            zipCodes: z.array(z.string().min(1)).min(1, "At least one zip required"),
+        })
+    ).min(1, "At least one state is required"),
+
+    licensed: z.boolean()
 });
 
 export type CreateUserFormValues = z.infer<typeof createUserSchema>;

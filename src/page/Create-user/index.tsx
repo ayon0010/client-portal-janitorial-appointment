@@ -6,7 +6,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import {
     Select,
@@ -22,7 +22,7 @@ import placeHolder from "../../../public/images.png"
 import Image from 'next/image'
 import { Trash } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateUserFormValues, createUserSchema } from '@/lib/schema/register'
 import { uploadToImageBB } from '@/lib/uploadToImgBB'
@@ -55,9 +55,6 @@ const CreateUser = () => {
             lastName: "",
             companyName: "",
             website: "",
-            primaryState: "",
-            primaryCity: "",
-            zipCodes: [],
             dncList: "",
             contactNumber: "",
             whatsappNumber: "",
@@ -69,7 +66,15 @@ const CreateUser = () => {
             leadNumber: 0,
             contract: true,
             payment: true,
-            requirment: ""
+            requirment: "",
+            additionalStates: [
+                {
+                    state: "",
+                    city: "",
+                    zipCodes: [],
+                },
+            ],
+            licensed: true,
         },
     });
 
@@ -91,6 +96,13 @@ const CreateUser = () => {
             }),
         });
     };
+
+
+    const { fields, append } = useFieldArray({
+        control,
+        name: "additionalStates",
+    });
+
 
 
     return (
@@ -159,76 +171,91 @@ const CreateUser = () => {
                                             {...register("website")}
                                         />
                                     </Field>
-                                    <Field>
-                                        <FieldLabel htmlFor="primaryState">Primary State</FieldLabel>
-                                        <Controller
-                                            control={control}
-                                            name="primaryState"
-                                            render={({ field }) => (
-                                                <Select
-                                                    value={field.value}
-                                                    onValueChange={field.onChange}
-                                                >
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Select state" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {states.map((state) => (
-                                                            <SelectItem
-                                                                key={state}
-                                                                value={state
-                                                                    .toLowerCase()
-                                                                    .replace(" ", "-")}
-                                                            >
-                                                                {state}
-                                                            </SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            )}
-                                        />
-                                        {
-                                            errors.primaryState && (
-                                                <p className="text-sm text-red-500">
-                                                    {errors.primaryState.message}
-                                                </p>
-                                            )
-                                        }
-                                    </Field>
-                                    <Field>
-                                        <FieldLabel htmlFor='primaryCity'>Primary City</FieldLabel>
-                                        <Input
-                                            id="primaryCity"
-                                            type="text"
-                                            placeholder="Dallas"
-                                            {...register("primaryCity")}
-                                        />
-                                    </Field>
-                                    <Field>
-                                        <FieldLabel htmlFor="zipCodes">Service States (Zip Code)</FieldLabel>
-                                        <Controller
-                                            control={control}
-                                            name="zipCodes"
-                                            render={({ field }) => (
-                                                <>
-                                                    <Textarea
-                                                        placeholder="10001,10002"
-                                                        value={field.value.join(",")}
-                                                        onChange={(e) => {
-                                                            field.onChange(
-                                                                e.target.value
-                                                                    .split(",")
-                                                                    .map((z) => z.trim())
-                                                                    .filter(Boolean)
-                                                            );
-                                                        }}
+                                    {
+                                        fields.map((item, index) => (
+                                            <FieldSet key={index}>
+                                                <Field>
+                                                    <FieldLabel htmlFor={`state-${index}`}>
+                                                        {index === 0 ? 'Primary State' : `State #${index + 1}`}
+                                                    </FieldLabel>
+                                                    <Controller
+                                                        control={control}
+                                                        name={`additionalStates.${index}.state`}
+                                                        render={({ field }) => (
+                                                            <Select onValueChange={field.onChange} value={field.value}>
+                                                                <SelectTrigger className="w-full">
+                                                                    <SelectValue placeholder="Select state" />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    {states.map((state) => (
+                                                                        <SelectItem
+                                                                            key={state}
+                                                                            value={state.toLowerCase().replace(" ", "-")}
+                                                                        >
+                                                                            {state}
+                                                                        </SelectItem>
+                                                                    ))}
+                                                                </SelectContent>
+                                                            </Select>
+                                                        )}
                                                     />
-                                                </>
-                                            )}
-                                        />
-
-                                    </Field>
-
+                                                    {errors.additionalStates?.[index]?.state && (
+                                                        <p className="text-sm text-red-500">
+                                                            {errors.additionalStates[index]?.state?.message}
+                                                        </p>
+                                                    )}
+                                                </Field>
+                                                <Field>
+                                                    <FieldLabel htmlFor={`City-${index}`}>
+                                                        {index === 0 ? 'Primary City' : `City #${index + 1}`}
+                                                    </FieldLabel>
+                                                    <Input
+                                                        id={`City-${index}`}
+                                                        placeholder="Dallas"
+                                                        {...register(`additionalStates.${index}.city`)}
+                                                    />
+                                                    {errors.additionalStates?.[index]?.city && (
+                                                        <p className="text-sm text-red-500">
+                                                            {errors.additionalStates[index]?.city?.message}
+                                                        </p>
+                                                    )}
+                                                </Field>
+                                                <Field>
+                                                    <FieldLabel htmlFor="zipCodes">Service States (Zip Code)</FieldLabel>
+                                                    <Controller
+                                                        control={control}
+                                                        name={`additionalStates.${index}.zipCodes`}
+                                                        render={({ field }) => (
+                                                            <Textarea
+                                                                value={(field.value ?? []).join(",")}
+                                                                placeholder='10001,10002'
+                                                                onChange={(e) =>
+                                                                    field.onChange(
+                                                                        e.target.value
+                                                                            .split(",")
+                                                                            .map((z) => z.trim())
+                                                                    )
+                                                                }
+                                                            />
+                                                        )}
+                                                    />
+                                                    {errors.additionalStates?.[index]?.zipCodes?.message && (
+                                                        <p className="text-sm text-red-500">
+                                                            {errors.additionalStates[index]?.zipCodes?.message}
+                                                        </p>
+                                                    )}
+                                                </Field>
+                                            </FieldSet>
+                                        ))
+                                    }
+                                    <Button
+                                        type="button"
+                                        onClick={() =>
+                                            append({ state: "", city: "", zipCodes: [] })
+                                        }
+                                    >
+                                        + Add More States
+                                    </Button>
                                     <Field>
                                         <FieldLabel htmlFor="dncList">DNC List</FieldLabel>
                                         <Textarea
@@ -435,8 +462,8 @@ const CreateUser = () => {
                                 render={({ field }) => (
                                     <div className="flex items-center space-x-2">
                                         <Checkbox
-                                            checked={field.value}
-                                            onCheckedChange={field.onChange}
+                                            checked={!!field.value}
+                                            onCheckedChange={(val) => field.onChange(!!val)}
                                         />
                                         <Label>Agreed to pay?</Label>
                                     </div>
@@ -448,10 +475,23 @@ const CreateUser = () => {
                                 render={({ field }) => (
                                     <div className="flex items-center space-x-2">
                                         <Checkbox
-                                            checked={field.value}
-                                            onCheckedChange={field.onChange}
+                                            checked={!!field.value}
+                                            onCheckedChange={(val) => field.onChange(!!val)}
                                         />
                                         <Label>Have Contract?</Label>
+                                    </div>
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="licensed"
+                                render={({ field }) => (
+                                    <div className="flex items-center space-x-2">
+                                        <Checkbox
+                                            checked={!!field.value}
+                                            onCheckedChange={(val) => field.onChange(!!val)}
+                                        />
+                                        <Label>Have licensed & insured?</Label>
                                     </div>
                                 )}
                             />

@@ -42,8 +42,6 @@ export type UserMinAggregateOutputType = {
   lastName: string | null
   companyName: string | null
   website: string | null
-  primaryState: string | null
-  primaryCity: string | null
   dncList: string | null
   contactNumber: string | null
   whatsappNumber: string | null
@@ -60,6 +58,7 @@ export type UserMinAggregateOutputType = {
   contract: boolean | null
   payment: boolean | null
   issue: string | null
+  licensed: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -70,8 +69,6 @@ export type UserMaxAggregateOutputType = {
   lastName: string | null
   companyName: string | null
   website: string | null
-  primaryState: string | null
-  primaryCity: string | null
   dncList: string | null
   contactNumber: string | null
   whatsappNumber: string | null
@@ -88,6 +85,7 @@ export type UserMaxAggregateOutputType = {
   contract: boolean | null
   payment: boolean | null
   issue: string | null
+  licensed: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -98,9 +96,6 @@ export type UserCountAggregateOutputType = {
   lastName: number
   companyName: number
   website: number
-  primaryState: number
-  primaryCity: number
-  zipCodes: number
   dncList: number
   contactNumber: number
   whatsappNumber: number
@@ -117,6 +112,7 @@ export type UserCountAggregateOutputType = {
   contract: number
   payment: number
   issue: number
+  licensed: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -139,8 +135,6 @@ export type UserMinAggregateInputType = {
   lastName?: true
   companyName?: true
   website?: true
-  primaryState?: true
-  primaryCity?: true
   dncList?: true
   contactNumber?: true
   whatsappNumber?: true
@@ -157,6 +151,7 @@ export type UserMinAggregateInputType = {
   contract?: true
   payment?: true
   issue?: true
+  licensed?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -167,8 +162,6 @@ export type UserMaxAggregateInputType = {
   lastName?: true
   companyName?: true
   website?: true
-  primaryState?: true
-  primaryCity?: true
   dncList?: true
   contactNumber?: true
   whatsappNumber?: true
@@ -185,6 +178,7 @@ export type UserMaxAggregateInputType = {
   contract?: true
   payment?: true
   issue?: true
+  licensed?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -195,9 +189,6 @@ export type UserCountAggregateInputType = {
   lastName?: true
   companyName?: true
   website?: true
-  primaryState?: true
-  primaryCity?: true
-  zipCodes?: true
   dncList?: true
   contactNumber?: true
   whatsappNumber?: true
@@ -214,6 +205,7 @@ export type UserCountAggregateInputType = {
   contract?: true
   payment?: true
   issue?: true
+  licensed?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -311,9 +303,6 @@ export type UserGroupByOutputType = {
   lastName: string
   companyName: string
   website: string | null
-  primaryState: string
-  primaryCity: string | null
-  zipCodes: string[]
   dncList: string | null
   contactNumber: string
   whatsappNumber: string | null
@@ -330,6 +319,7 @@ export type UserGroupByOutputType = {
   contract: boolean
   payment: boolean
   issue: string | null
+  licensed: boolean
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -363,10 +353,8 @@ export type UserWhereInput = {
   lastName?: Prisma.StringFilter<"User"> | string
   companyName?: Prisma.StringFilter<"User"> | string
   website?: Prisma.StringNullableFilter<"User"> | string | null
-  primaryState?: Prisma.StringFilter<"User"> | string
-  primaryCity?: Prisma.StringNullableFilter<"User"> | string | null
-  zipCodes?: Prisma.StringNullableListFilter<"User">
   dncList?: Prisma.StringNullableFilter<"User"> | string | null
+  additionalStates?: Prisma.AdditionalStateCompositeListFilter | Prisma.AdditionalStateObjectEqualityInput[]
   contactNumber?: Prisma.StringFilter<"User"> | string
   whatsappNumber?: Prisma.StringNullableFilter<"User"> | string | null
   receiveLeads?: Prisma.EnumReceiveLeadsFilter<"User"> | $Enums.ReceiveLeads
@@ -382,6 +370,7 @@ export type UserWhereInput = {
   contract?: Prisma.BoolFilter<"User"> | boolean
   payment?: Prisma.BoolFilter<"User"> | boolean
   issue?: Prisma.StringNullableFilter<"User"> | string | null
+  licensed?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
@@ -392,10 +381,8 @@ export type UserOrderByWithRelationInput = {
   lastName?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  primaryState?: Prisma.SortOrder
-  primaryCity?: Prisma.SortOrder
-  zipCodes?: Prisma.SortOrder
   dncList?: Prisma.SortOrder
+  additionalStates?: Prisma.AdditionalStateOrderByCompositeAggregateInput
   contactNumber?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
   receiveLeads?: Prisma.SortOrder
@@ -411,6 +398,7 @@ export type UserOrderByWithRelationInput = {
   contract?: Prisma.SortOrder
   payment?: Prisma.SortOrder
   issue?: Prisma.SortOrder
+  licensed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -425,10 +413,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   lastName?: Prisma.StringFilter<"User"> | string
   companyName?: Prisma.StringFilter<"User"> | string
   website?: Prisma.StringNullableFilter<"User"> | string | null
-  primaryState?: Prisma.StringFilter<"User"> | string
-  primaryCity?: Prisma.StringNullableFilter<"User"> | string | null
-  zipCodes?: Prisma.StringNullableListFilter<"User">
   dncList?: Prisma.StringNullableFilter<"User"> | string | null
+  additionalStates?: Prisma.AdditionalStateCompositeListFilter | Prisma.AdditionalStateObjectEqualityInput[]
   contactNumber?: Prisma.StringFilter<"User"> | string
   whatsappNumber?: Prisma.StringNullableFilter<"User"> | string | null
   receiveLeads?: Prisma.EnumReceiveLeadsFilter<"User"> | $Enums.ReceiveLeads
@@ -443,6 +429,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   contract?: Prisma.BoolFilter<"User"> | boolean
   payment?: Prisma.BoolFilter<"User"> | boolean
   issue?: Prisma.StringNullableFilter<"User"> | string | null
+  licensed?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }, "id" | "email">
@@ -453,9 +440,6 @@ export type UserOrderByWithAggregationInput = {
   lastName?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  primaryState?: Prisma.SortOrder
-  primaryCity?: Prisma.SortOrder
-  zipCodes?: Prisma.SortOrder
   dncList?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
@@ -472,6 +456,7 @@ export type UserOrderByWithAggregationInput = {
   contract?: Prisma.SortOrder
   payment?: Prisma.SortOrder
   issue?: Prisma.SortOrder
+  licensed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -490,9 +475,6 @@ export type UserScalarWhereWithAggregatesInput = {
   lastName?: Prisma.StringWithAggregatesFilter<"User"> | string
   companyName?: Prisma.StringWithAggregatesFilter<"User"> | string
   website?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  primaryState?: Prisma.StringWithAggregatesFilter<"User"> | string
-  primaryCity?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  zipCodes?: Prisma.StringNullableListFilter<"User">
   dncList?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   contactNumber?: Prisma.StringWithAggregatesFilter<"User"> | string
   whatsappNumber?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
@@ -509,6 +491,7 @@ export type UserScalarWhereWithAggregatesInput = {
   contract?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   payment?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   issue?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  licensed?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -519,10 +502,8 @@ export type UserCreateInput = {
   lastName: string
   companyName: string
   website?: string | null
-  primaryState: string
-  primaryCity?: string | null
-  zipCodes?: Prisma.UserCreatezipCodesInput | string[]
   dncList?: string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListCreateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber: string
   whatsappNumber?: string | null
   receiveLeads: $Enums.ReceiveLeads
@@ -538,6 +519,7 @@ export type UserCreateInput = {
   contract: boolean
   payment: boolean
   issue?: string | null
+  licensed: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -548,10 +530,8 @@ export type UserUncheckedCreateInput = {
   lastName: string
   companyName: string
   website?: string | null
-  primaryState: string
-  primaryCity?: string | null
-  zipCodes?: Prisma.UserCreatezipCodesInput | string[]
   dncList?: string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListCreateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber: string
   whatsappNumber?: string | null
   receiveLeads: $Enums.ReceiveLeads
@@ -567,6 +547,7 @@ export type UserUncheckedCreateInput = {
   contract: boolean
   payment: boolean
   issue?: string | null
+  licensed: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -576,10 +557,8 @@ export type UserUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   companyName?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
-  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
   dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListUpdateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
@@ -595,6 +574,7 @@ export type UserUpdateInput = {
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
   payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
   issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -604,10 +584,8 @@ export type UserUncheckedUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   companyName?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
-  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
   dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListUpdateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
@@ -623,6 +601,7 @@ export type UserUncheckedUpdateInput = {
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
   payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
   issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -633,10 +612,8 @@ export type UserCreateManyInput = {
   lastName: string
   companyName: string
   website?: string | null
-  primaryState: string
-  primaryCity?: string | null
-  zipCodes?: Prisma.UserCreatezipCodesInput | string[]
   dncList?: string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListCreateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber: string
   whatsappNumber?: string | null
   receiveLeads: $Enums.ReceiveLeads
@@ -652,6 +629,7 @@ export type UserCreateManyInput = {
   contract: boolean
   payment: boolean
   issue?: string | null
+  licensed: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -661,10 +639,8 @@ export type UserUpdateManyMutationInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   companyName?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
-  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
   dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListUpdateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
@@ -680,6 +656,7 @@ export type UserUpdateManyMutationInput = {
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
   payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
   issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -689,10 +666,8 @@ export type UserUncheckedUpdateManyInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   companyName?: Prisma.StringFieldUpdateOperationsInput | string
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryState?: Prisma.StringFieldUpdateOperationsInput | string
-  primaryCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  zipCodes?: Prisma.UserUpdatezipCodesInput | string[]
   dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListUpdateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
   contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
   whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
@@ -708,16 +683,15 @@ export type UserUncheckedUpdateManyInput = {
   contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
   payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
   issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
+export type AdditionalStateObjectEqualityInput = {
+  state: string
+  city: string
+  zipCodes?: string[]
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -726,9 +700,6 @@ export type UserCountOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  primaryState?: Prisma.SortOrder
-  primaryCity?: Prisma.SortOrder
-  zipCodes?: Prisma.SortOrder
   dncList?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
@@ -745,6 +716,7 @@ export type UserCountOrderByAggregateInput = {
   contract?: Prisma.SortOrder
   payment?: Prisma.SortOrder
   issue?: Prisma.SortOrder
+  licensed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -760,8 +732,6 @@ export type UserMaxOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  primaryState?: Prisma.SortOrder
-  primaryCity?: Prisma.SortOrder
   dncList?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
@@ -778,6 +748,7 @@ export type UserMaxOrderByAggregateInput = {
   contract?: Prisma.SortOrder
   payment?: Prisma.SortOrder
   issue?: Prisma.SortOrder
+  licensed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -788,8 +759,6 @@ export type UserMinOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
   website?: Prisma.SortOrder
-  primaryState?: Prisma.SortOrder
-  primaryCity?: Prisma.SortOrder
   dncList?: Prisma.SortOrder
   contactNumber?: Prisma.SortOrder
   whatsappNumber?: Prisma.SortOrder
@@ -806,6 +775,7 @@ export type UserMinOrderByAggregateInput = {
   contract?: Prisma.SortOrder
   payment?: Prisma.SortOrder
   issue?: Prisma.SortOrder
+  licensed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -815,8 +785,10 @@ export type UserSumOrderByAggregateInput = {
   leadNumber?: Prisma.SortOrder
 }
 
-export type UserCreatezipCodesInput = {
-  set: string[]
+export type AdditionalStateCreateInput = {
+  state: string
+  city: string
+  zipCodes?: Prisma.AdditionalStateCreatezipCodesInput | string[]
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -826,11 +798,6 @@ export type StringFieldUpdateOperationsInput = {
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
   unset?: boolean
-}
-
-export type UserUpdatezipCodesInput = {
-  set?: string[]
-  push?: string | string[]
 }
 
 export type EnumReceiveLeadsFieldUpdateOperationsInput = {
@@ -865,10 +832,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   lastName?: boolean
   companyName?: boolean
   website?: boolean
-  primaryState?: boolean
-  primaryCity?: boolean
-  zipCodes?: boolean
   dncList?: boolean
+  additionalStates?: boolean | Prisma.AdditionalStateDefaultArgs<ExtArgs>
   contactNumber?: boolean
   whatsappNumber?: boolean
   receiveLeads?: boolean
@@ -884,6 +849,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   contract?: boolean
   payment?: boolean
   issue?: boolean
+  licensed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -896,9 +862,6 @@ export type UserSelectScalar = {
   lastName?: boolean
   companyName?: boolean
   website?: boolean
-  primaryState?: boolean
-  primaryCity?: boolean
-  zipCodes?: boolean
   dncList?: boolean
   contactNumber?: boolean
   whatsappNumber?: boolean
@@ -915,11 +878,13 @@ export type UserSelectScalar = {
   contract?: boolean
   payment?: boolean
   issue?: boolean
+  licensed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "companyName" | "website" | "primaryState" | "primaryCity" | "zipCodes" | "dncList" | "contactNumber" | "whatsappNumber" | "receiveLeads" | "years" | "email" | "hashedPassword" | "leadNumber" | "note" | "requirment" | "max" | "avatar" | "status" | "contract" | "payment" | "issue" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "companyName" | "website" | "dncList" | "additionalStates" | "contactNumber" | "whatsappNumber" | "receiveLeads" | "years" | "email" | "hashedPassword" | "leadNumber" | "note" | "requirment" | "max" | "avatar" | "status" | "contract" | "payment" | "issue" | "licensed" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
@@ -930,9 +895,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     lastName: string
     companyName: string
     website: string | null
-    primaryState: string
-    primaryCity: string | null
-    zipCodes: string[]
     dncList: string | null
     contactNumber: string
     whatsappNumber: string | null
@@ -949,10 +911,13 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     contract: boolean
     payment: boolean
     issue: string | null
+    licensed: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
-  composites: {}
+  composites: {
+    additionalStates: Prisma.$AdditionalStatePayload[]
+  }
 }
 
 export type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$UserPayload, S>
@@ -1348,9 +1313,6 @@ export interface UserFieldRefs {
   readonly lastName: Prisma.FieldRef<"User", 'String'>
   readonly companyName: Prisma.FieldRef<"User", 'String'>
   readonly website: Prisma.FieldRef<"User", 'String'>
-  readonly primaryState: Prisma.FieldRef<"User", 'String'>
-  readonly primaryCity: Prisma.FieldRef<"User", 'String'>
-  readonly zipCodes: Prisma.FieldRef<"User", 'String[]'>
   readonly dncList: Prisma.FieldRef<"User", 'String'>
   readonly contactNumber: Prisma.FieldRef<"User", 'String'>
   readonly whatsappNumber: Prisma.FieldRef<"User", 'String'>
@@ -1367,6 +1329,7 @@ export interface UserFieldRefs {
   readonly contract: Prisma.FieldRef<"User", 'Boolean'>
   readonly payment: Prisma.FieldRef<"User", 'Boolean'>
   readonly issue: Prisma.FieldRef<"User", 'String'>
+  readonly licensed: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -1386,6 +1349,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1404,6 +1371,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1421,6 +1392,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -1470,6 +1445,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -1518,6 +1497,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which Users to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -1561,6 +1544,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The data needed to create a User.
    */
   data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
@@ -1588,6 +1575,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1629,6 +1620,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1654,6 +1649,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter which User to delete.
    */
@@ -1714,4 +1713,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }

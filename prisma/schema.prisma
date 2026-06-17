@@ -19,6 +19,12 @@ enum Role {
   USER
 }
 
+type AdditionalState {
+  state    String
+  city     String
+  zipCodes String[]
+}
+
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -28,12 +34,9 @@ model User {
 
   website String?
 
-  primaryState String
-  primaryCity  String?
-
-  zipCodes String[] // comma separated or JSON string
-
   dncList String?
+
+  additionalStates AdditionalState[]
 
   contactNumber  String
   whatsappNumber String?
@@ -58,6 +61,8 @@ model User {
   payment  Boolean
 
   issue String?
+
+  licensed Boolean
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

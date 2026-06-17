@@ -507,9 +507,6 @@ export const UserScalarFieldEnum = {
   lastName: 'lastName',
   companyName: 'companyName',
   website: 'website',
-  primaryState: 'primaryState',
-  primaryCity: 'primaryCity',
-  zipCodes: 'zipCodes',
   dncList: 'dncList',
   contactNumber: 'contactNumber',
   whatsappNumber: 'whatsappNumber',
@@ -526,6 +523,7 @@ export const UserScalarFieldEnum = {
   contract: 'contract',
   payment: 'payment',
   issue: 'issue',
+  licensed: 'licensed',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

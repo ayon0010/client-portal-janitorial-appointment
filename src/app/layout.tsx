@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, IBM_Plex_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { NextThemeProvider } from "@/providers/ThemeProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+
 
 
 const playfairDisplayHeading = Playfair_Display({ subsets: ['latin'], variable: '--font-heading' });
@@ -34,7 +35,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={cn(
-        "h-full",
+        "h-full dark",
         "antialiased",
         geistSans.variable,
         geistMono.variable,
@@ -44,9 +45,15 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <NextThemeProvider>
+        {/* <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-        </NextThemeProvider>
+        </ThemeProvider> */}
+        {children}
       </body>
     </html>
   );
