@@ -228,6 +228,7 @@ const CreateUser = () => {
                                         />
 
                                     </Field>
+
                                     <Field>
                                         <FieldLabel htmlFor="dncList">DNC List</FieldLabel>
                                         <Textarea
@@ -355,8 +356,6 @@ const CreateUser = () => {
                                             {...register("note")}
                                         />
                                     </Field>
-
-
                                 </FieldGroup>
                             </div>
                         </CardContent>

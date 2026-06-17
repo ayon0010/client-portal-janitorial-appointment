@@ -18,7 +18,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginSchema } from "@/lib/schema/login";
 
 
-
 export function LoginForm({
   className,
   ...props
@@ -56,7 +55,6 @@ export function LoginForm({
                   Login to our janitorial client portal
                 </p>
               </div>
-
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
@@ -125,8 +123,8 @@ export function LoginForm({
 
       <FieldDescription className="px-6 text-center">
         By clicking continue, you agree to our{" "}
-        <a href="#">Terms of Service</a> and{" "}
-        <a href="#">Privacy Policy</a>.
+        <a href="https://www.janitorialappointment.com/terms-and-conditions">Terms of Service</a> and{" "}
+        <a href="https://www.janitorialappointment.com/privacy-policy">Privacy Policy</a>.
       </FieldDescription>
     </div>
   );
