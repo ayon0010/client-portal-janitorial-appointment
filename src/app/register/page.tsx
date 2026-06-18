@@ -158,14 +158,14 @@ const Page = () => {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='flex items-start justify-between gap-6 p-10 md:flex-row flex-col'>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex md:flex-row flex-col items-start justify-between md:gap-6 gap-4 md:p-10 p-6'>
             <div className='md:w-[65%] w-full'>
-                <Card>
-                    <div className='flex md:flex-row flex-col items-start justify-between'>
+                <Card className='w-full'>
+                    <div className='flex md:flex-row flex-col items-start justify-between w-full md:gap-0 gap-10'>
                         <CardHeader className='md:w-[30%] w-full'>
-                            <CardTitle className='text-[12px] md:text-left text-center'>User Information</CardTitle>
+                            <CardTitle className='md:text-[12px] text-xl md:text-left text-center'>User Information</CardTitle>
                         </CardHeader>
-                        <CardContent className='flex-1'>
+                        <CardContent className='flex-1 w-full'>
                             <div>
                                 <FieldGroup className='gap-5!'>
                                     <div className='flex items-center gap-2'>
@@ -441,7 +441,7 @@ const Page = () => {
                     </div>
                 </Card>
             </div>
-            <div className='flex-1 sticky top-10'>
+            <div className='flex-1 md:sticky md:top-10 relative w-full'>
                 <Card>
                     <CardHeader>
                         <label htmlFor="avatar" className="cursor-pointer">
