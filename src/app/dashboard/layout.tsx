@@ -25,6 +25,10 @@ const data = {
             url: "#",
             items: [
                 {
+                    title: "All User",
+                    url: "/dashboard/all-users",
+                },
+                {
                     title: "Create User",
                     url: "/dashboard/create-user",
                 },
@@ -45,7 +49,6 @@ const data = {
                 {
                     title: "Data Fetching",
                     url: "#",
-                    isActive: true,
                 },
                 {
                     title: "Rendering",
@@ -169,9 +172,10 @@ export default async function RootLayout({
     const items = data.navMain.map(d => d.items).flat();
     const findActive = items.find(d => d.url === pathname);
 
+
     return (
         <SidebarProvider>
-            <AppSidebar data={data} />
+            <AppSidebar data={data}/>
             <SidebarInset>
                 <header className="flex h-16 shrink-0 items-center gap-2 border-b">
                     <div className="flex items-center gap-2 px-3">

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, IBM_Plex_Sans, Playfair_Display } from "next/font/go
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import QueryProvider from "@/providers/TanStackProvider";
 
 
 
@@ -45,15 +46,9 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        {/* <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <QueryProvider>
           {children}
-        </ThemeProvider> */}
-        {children}
+        </QueryProvider>
       </body>
     </html>
   );
