@@ -133,20 +133,20 @@ const Page = () => {
 
     if (success && status) {
         return (
-            <div className='w-screen h-screen flex items-center justify-center'>
+            <div className='w-screen h-screen flex items-center justify-center p-6'>
                 <div className="max-w-[400px] rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
                     {/* Glass highlight */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
 
-                    <div className="relative rounded-full border border-white/30 bg-white/15 backdrop-blur-md p-4 shadow-lg">
-                        <Check className="size-14 text-white" />
+                    <div className="relative rounded-full border border-white/30 bg-white/15 backdrop-blur-md md:p-4 p-2 shadow-lg">
+                        <Check className="md:size-14 size-10 text-white" />
                     </div>
 
-                    <h3 className="relative text-center text-3xl font-semibold text-white">
+                    <h3 className="relative text-center md:text-3xl text-xl font-semibold text-white">
                         Successfully Registered
                     </h3>
 
-                    <p className="relative text-center text-lg text-white/80">
+                    <p className="relative text-center md:text-lg text-sm text-white/80">
                         Thank You! You have successfully registered on our website.
                         You can now get all the lead updates.
                     </p>
@@ -158,12 +158,12 @@ const Page = () => {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='flex items-start justify-between gap-6 p-10'>
-            <div className='w-[65%]'>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex items-start justify-between gap-6 p-10 md:flex-row flex-col'>
+            <div className='md:w-[65%] w-full'>
                 <Card>
-                    <div className='flex items-start justify-between'>
-                        <CardHeader className='w-[30%]'>
-                            <CardTitle className='text-[12px]'>User Information</CardTitle>
+                    <div className='flex md:flex-row flex-col items-start justify-between'>
+                        <CardHeader className='md:w-[30%] w-full'>
+                            <CardTitle className='text-[12px] md:text-left text-center'>User Information</CardTitle>
                         </CardHeader>
                         <CardContent className='flex-1'>
                             <div>
