@@ -94,28 +94,40 @@ const RegisterPage = () => {
 
     const onSubmit = async (data: CreateUserFormValues) => {
         setLoading(true);
-        let avatar = "";
 
-        if (selectedFile) {
-            avatar = await uploadToImageBB(selectedFile);
-        }
+        try {
+            let avatar = "";
 
-        const response = await fetch("/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...data,
-                avatar,
-            }),
-        });
-        if (response) {
-            setStatus(response.ok);
-            setLoading(false);
-            if (response.ok) {
-                router.push('/register?success=true')
+            if (selectedFile) {
+                avatar = await uploadToImageBB(selectedFile);
             }
+
+            const response = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...data,
+                    avatar,
+                }),
+            });
+
+            const responseData = await response.json();
+
+            setStatus(response.ok);
+
+            if (response.ok) {
+                router.push("/register?success=true");
+            } else {
+                console.log("Error:", responseData);
+            }
+
+        } catch (error) {
+            console.error("Request failed:", error);
+            setStatus(false);
+        } finally {
+            setLoading(false);
         }
     };
 
