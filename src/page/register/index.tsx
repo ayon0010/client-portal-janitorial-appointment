@@ -120,6 +120,7 @@ const RegisterPage = () => {
             if (response.ok) {
                 router.push("/register?success=true");
             } else {
+                alert("Something went wrong")
                 console.log("Error:", responseData);
             }
 
