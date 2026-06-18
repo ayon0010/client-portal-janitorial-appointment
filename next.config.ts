@@ -1,10 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Move it to the top-level configuration
-  outputFileTracingIncludes: {
-    '/*': ['./src/generated/*.node'],
-  },
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
   reactCompiler: true,
+  
 };
 
-module.exports = nextConfig;
+export default nextConfig;
