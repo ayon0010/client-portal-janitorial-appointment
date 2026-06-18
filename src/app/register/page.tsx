@@ -28,12 +28,26 @@ import { CreateUserFormValues, createUserSchema } from '@/lib/schema/register'
 import { uploadToImageBB } from '@/lib/uploadToImgBB'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { Check } from "lucide-react";
+import Loader from '@/components/ui/Loader'
+
+
 
 
 const Page = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [image, setImage] = useState("");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [status, setStatus] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+
+    const params = useSearchParams();
+
+    const router = useRouter();
+
+    const success = params.get('success');
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
@@ -47,7 +61,6 @@ const Page = () => {
         register,
         handleSubmit,
         control,
-        watch,
         formState: { errors },
     } = useForm<CreateUserFormValues>({
         resolver: zodResolver(createUserSchema),
@@ -80,13 +93,14 @@ const Page = () => {
     });
 
     const onSubmit = async (data: CreateUserFormValues) => {
+        setLoading(true);
         let avatar = "";
 
         if (selectedFile) {
             avatar = await uploadToImageBB(selectedFile);
         }
 
-        await fetch("/api/register", {
+        const response = await fetch("/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -96,6 +110,11 @@ const Page = () => {
                 avatar,
             }),
         });
+        if (response) {
+            setStatus(response.ok);
+            setLoading(false);
+            router.push('/register?success=true')
+        }
     };
 
 
@@ -105,11 +124,36 @@ const Page = () => {
     });
 
 
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
 
-    const yearsOfWork = watch("years");
 
-    console.log(yearsOfWork);
+    if (success && status) {
+        return (
+            <div className='w-screen h-screen flex items-center justify-center'>
+                <div className="max-w-[400px] rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+                    {/* Glass highlight */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
 
+                    <div className="relative rounded-full border border-white/30 bg-white/15 backdrop-blur-md p-4 shadow-lg">
+                        <Check className="size-14 text-white" />
+                    </div>
+
+                    <h3 className="relative text-center text-3xl font-semibold text-white">
+                        Successfully Registered
+                    </h3>
+
+                    <p className="relative text-center text-lg text-white/80">
+                        Thank You! You have successfully registered on our website.
+                        You can now get all the lead updates.
+                    </p>
+                </div>
+            </div>
+        )
+    }
 
 
 
