@@ -15,10 +15,19 @@ import {
 } from "@/components/ui/sidebar"
 import { headers } from "next/headers"
 
-
+export type SidebarDataType = {
+    navMain: {
+        title: string;
+        url: string;
+        items: {
+            title: string;
+            url: string;
+        }[];
+    }[];
+};
 
 // This is sample data.
-const data = {
+const data: SidebarDataType = {
     navMain: [
         {
             title: "User",

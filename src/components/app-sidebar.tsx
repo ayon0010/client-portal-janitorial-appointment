@@ -28,14 +28,23 @@ type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
   data?: any,
 }
 
+export interface NavSubItem {
+  title: string;
+  url: string;
+}
+
+export interface NavMainCategory {
+  title: string;
+  url: string;
+  items?: NavSubItem[]; // Marked optional since you use item.items?.length
+}
+
 export function AppSidebar({ data, ...props }: AppSidebarProps) {
 
 
   const pathName = usePathname();
 
   console.log(pathName);
-
-
 
 
   return (
@@ -62,7 +71,7 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {data.navMain.map((item) => (
+            {data.navMain.map((item: NavMainCategory) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
                   <a href={item.url} className="font-medium">
@@ -71,7 +80,7 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <SidebarMenuSub>
-                    {item.items.map((item) => (
+                    {item.items.map((item: NavSubItem) => (
                       <SidebarMenuSubItem key={item.title}>
                         <SidebarMenuSubButton asChild isActive={item.url === pathName}>
                           <a href={item.url}>{item.title}</a>
