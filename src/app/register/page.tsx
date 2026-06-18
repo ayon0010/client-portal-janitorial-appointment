@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 
 const page = () => {
     return (
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p></p>}>
             <RegisterPage />
         </Suspense>
     )

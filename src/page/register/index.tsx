@@ -113,7 +113,9 @@ const RegisterPage = () => {
         if (response) {
             setStatus(response.ok);
             setLoading(false);
-            router.push('/register?success=true')
+            if (response.ok) {
+                router.push('/register?success=true')
+            }
         }
     };
 
