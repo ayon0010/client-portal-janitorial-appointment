@@ -39,12 +39,16 @@ const data = {
             ],
         },
         {
-            title: "Build Your Application",
+            title: "Leads",
             url: "#",
             items: [
                 {
-                    title: "Routing",
-                    url: "#",
+                    title: "All Leads",
+                    url: "/dashboard/all-leads",
+                },
+                {
+                    title: "Upload Leads",
+                    url: "/dashboard/create-leads",
                 },
                 {
                     title: "Data Fetching",
@@ -175,7 +179,7 @@ export default async function RootLayout({
 
     return (
         <SidebarProvider>
-            <AppSidebar data={data}/>
+            <AppSidebar data={data} />
             <SidebarInset>
                 <header className="flex h-16 shrink-0 items-center gap-2 border-b">
                     <div className="flex items-center gap-2 px-3">

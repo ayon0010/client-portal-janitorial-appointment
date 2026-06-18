@@ -4,7 +4,7 @@ import { User } from "@/generated/client"
 import { useQuery } from "@tanstack/react-query"
 import React from "react"
 
-const AllUser = () => {
+const AllLeads = () => {
 
     const { data: users, refetch, isLoading } = useQuery({
         queryKey: ['Users'],
@@ -19,7 +19,7 @@ const AllUser = () => {
         return <p>Loading...</p>
     }
 
-    const TableHeadData = ['Client Id', 'Client Name', 'Company Name', 'Email', 'Phone Number', 'Primary State', 'Primary City', 'zip', 'Status', 'Action'];
+    const TableHeadData = ['Lead Id', 'Client Name', 'Company Name', 'Email', 'Phone Number', 'Primary State', 'Primary City', 'zip', 'Status', 'Action'];
 
     console.log(users);
 
@@ -61,4 +61,4 @@ const AllUser = () => {
     )
 }
 
-export default AllUser
+export default AllLeads

@@ -27,3 +27,8 @@ export type AdditionalState = Prisma.AdditionalStateModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Lead
+ * 
+ */
+export type Lead = Prisma.LeadModel

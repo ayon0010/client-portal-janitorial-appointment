@@ -17,6 +17,15 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const PaymentStatus = {
+  paid: 'paid',
+  unpaid: 'unpaid',
+  pending: 'pending'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
 export const ReceiveLeads = {
   email: 'email',
   whatsapp: 'whatsapp'

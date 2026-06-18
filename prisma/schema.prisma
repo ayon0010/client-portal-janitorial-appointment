@@ -64,8 +64,30 @@ model User {
 
   licensed Boolean
 
+  leads Lead[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Lead {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  lead String @db.String
+
+  paymentStatus PaymentStatus @default(pending)
+
+  assignedUserId String @db.ObjectId
+  assignedUser   User   @relation(fields: [assignedUserId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  paid
+  unpaid
+  pending
 }
 
 enum ReceiveLeads {

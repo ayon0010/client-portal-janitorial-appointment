@@ -7,12 +7,6 @@ export const createUserSchema = z.object({
 
     website: z.string().optional(),
 
-    // primaryState: z.string().min(1, "Primary state is required"),
-
-    // primaryCity: z.string().optional(),
-
-    // zipCodes: z.array(z.string().min(1)).min(1, "At least one zip code required"),
-
     dncList: z.string().optional(),
 
     contactNumber: z.string().min(1, "Contact number is required"),
@@ -21,7 +15,9 @@ export const createUserSchema = z.object({
 
     receiveLeads: z.enum(["email", "whatsapp"]),
 
-    years: z.number().min(0, "Years must be 0 or greater"),
+    years: z.number().positive("Years must be greater than 0"),
+
+    leadNumber: z.number().positive("Number of leads must be greater than 3"),
 
     email: z.string().email("Invalid email"),
 
@@ -30,8 +26,6 @@ export const createUserSchema = z.object({
     avatar: z.string().url().optional(),
 
     note: z.string().optional(),
-
-    leadNumber: z.number().min(0, "Lead number must be greater than 3"),
 
     payment: z.boolean(),
 

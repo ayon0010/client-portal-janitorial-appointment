@@ -10,4 +10,5 @@
  */
 export type * from './models/AdditionalState'
 export type * from './models/User'
+export type * from './models/Lead'
 export type * from './commonInputTypes'

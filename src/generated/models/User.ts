@@ -373,6 +373,7 @@ export type UserWhereInput = {
   licensed?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  leads?: Prisma.LeadListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -401,6 +402,7 @@ export type UserOrderByWithRelationInput = {
   licensed?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  leads?: Prisma.LeadOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -432,6 +434,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   licensed?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  leads?: Prisma.LeadListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -522,6 +525,7 @@ export type UserCreateInput = {
   licensed: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  leads?: Prisma.LeadCreateNestedManyWithoutAssignedUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -550,6 +554,7 @@ export type UserUncheckedCreateInput = {
   licensed: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAssignedUserInput
 }
 
 export type UserUpdateInput = {
@@ -577,6 +582,7 @@ export type UserUpdateInput = {
   licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leads?: Prisma.LeadUpdateManyWithoutAssignedUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -604,6 +610,7 @@ export type UserUncheckedUpdateInput = {
   licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAssignedUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -785,6 +792,11 @@ export type UserSumOrderByAggregateInput = {
   leadNumber?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type AdditionalStateCreateInput = {
   state: string
   city: string
@@ -824,6 +836,175 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type UserCreateNestedOneWithoutLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLeadsInput
+  upsert?: Prisma.UserUpsertWithoutLeadsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLeadsInput, Prisma.UserUpdateWithoutLeadsInput>, Prisma.UserUncheckedUpdateWithoutLeadsInput>
+}
+
+export type UserCreateWithoutLeadsInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  companyName: string
+  website?: string | null
+  dncList?: string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListCreateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
+  contactNumber: string
+  whatsappNumber?: string | null
+  receiveLeads: $Enums.ReceiveLeads
+  years: number
+  email: string
+  hashedPassword: string
+  leadNumber: number
+  note?: string | null
+  requirment?: string | null
+  max?: string | null
+  avatar?: string | null
+  status?: $Enums.Status
+  contract: boolean
+  payment: boolean
+  issue?: string | null
+  licensed: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserUncheckedCreateWithoutLeadsInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  companyName: string
+  website?: string | null
+  dncList?: string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListCreateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
+  contactNumber: string
+  whatsappNumber?: string | null
+  receiveLeads: $Enums.ReceiveLeads
+  years: number
+  email: string
+  hashedPassword: string
+  leadNumber: number
+  note?: string | null
+  requirment?: string | null
+  max?: string | null
+  avatar?: string | null
+  status?: $Enums.Status
+  contract: boolean
+  payment: boolean
+  issue?: string | null
+  licensed: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserCreateOrConnectWithoutLeadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
+}
+
+export type UserUpsertWithoutLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLeadsInput, Prisma.UserUncheckedUpdateWithoutLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLeadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLeadsInput, Prisma.UserUncheckedUpdateWithoutLeadsInput>
+}
+
+export type UserUpdateWithoutLeadsInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListUpdateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
+  years?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requirment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserUncheckedUpdateWithoutLeadsInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  companyName?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dncList?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalStates?: Prisma.XOR<Prisma.AdditionalStateListUpdateEnvelopeInput, Prisma.AdditionalStateCreateInput> | Prisma.AdditionalStateCreateInput[]
+  contactNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  receiveLeads?: Prisma.EnumReceiveLeadsFieldUpdateOperationsInput | $Enums.ReceiveLeads
+  years?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  hashedPassword?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requirment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  max?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  contract?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  payment?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  issue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licensed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  leads: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  leads?: boolean | UserCountOutputTypeCountLeadsArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -852,6 +1033,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   licensed?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  leads?: boolean | Prisma.User$leadsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 
@@ -884,11 +1067,16 @@ export type UserSelectScalar = {
 }
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "companyName" | "website" | "dncList" | "additionalStates" | "contactNumber" | "whatsappNumber" | "receiveLeads" | "years" | "email" | "hashedPassword" | "leadNumber" | "note" | "requirment" | "max" | "avatar" | "status" | "contract" | "payment" | "issue" | "licensed" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
-export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  leads?: boolean | Prisma.User$leadsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    leads: Prisma.$LeadPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     firstName: string
@@ -1279,6 +1467,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  leads<T extends Prisma.User$leadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1699,6 +1888,30 @@ export type UserAggregateRawArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
    */
   options?: runtime.InputJsonValue
+}
+
+/**
+ * User.leads
+ */
+export type User$leadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Lead
+   */
+  select?: Prisma.LeadSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Lead
+   */
+  omit?: Prisma.LeadOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
 }
 
 /**
