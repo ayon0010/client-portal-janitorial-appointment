@@ -1,6 +1,7 @@
 "use client"
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
-import { User } from "@/generated/client"
+import { User } from "@prisma/client"
+
 import { useQuery } from "@tanstack/react-query"
 import React from "react"
 
