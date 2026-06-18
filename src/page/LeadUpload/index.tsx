@@ -3,13 +3,14 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Field, FieldLabel, FieldGroup } from '@/components/ui/field'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { User } from '@/generated/client'
+
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { leadUploadSchema, LeadUploadValues } from '@/lib/schema/Lead'
 import { Button } from '@/components/ui/button'
+import { User } from '@prisma/client'
 
 
 const LeadUpload = () => {
