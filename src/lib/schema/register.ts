@@ -43,7 +43,9 @@ export const createUserSchema = z.object({
         })
     ).min(1, "At least one state is required"),
 
-    licensed: z.boolean()
+    licensed: z.boolean(),
+
+    business: z.string().optional()
 });
 
 export type CreateUserFormValues = z.infer<typeof createUserSchema>;

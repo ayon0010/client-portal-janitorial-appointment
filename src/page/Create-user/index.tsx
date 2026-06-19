@@ -6,7 +6,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Field, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import {
     Select,
@@ -20,7 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import placeHolder from "../../../public/images.png"
 import Image from 'next/image'
-import { Trash } from 'lucide-react'
+import { Check, Trash, TriangleAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,12 +28,20 @@ import { CreateUserFormValues, createUserSchema } from '@/lib/schema/register'
 import { uploadToImageBB } from '@/lib/uploadToImgBB'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { useRouter, useSearchParams } from 'next/navigation'
+import Loader from '@/components/ui/Loader'
 
 
 const CreateUser = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [image, setImage] = useState("");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const params = useSearchParams();
+    const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
+
+    const success = params.get('success');
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
@@ -75,26 +83,43 @@ const CreateUser = () => {
                 },
             ],
             licensed: true,
+            business: "",
         },
     });
 
     const onSubmit = async (data: CreateUserFormValues) => {
-        let avatar = "";
+        setLoading(true);
+        try {
+            let avatar = "";
 
-        if (selectedFile) {
-            avatar = await uploadToImageBB(selectedFile);
+            if (selectedFile) {
+                avatar = await uploadToImageBB(selectedFile);
+            }
+
+            const response = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...data,
+                    avatar,
+                }),
+            });
+
+            const responseData = await response.json();
+            if (response.ok) {
+                router.push("/register?success=true");
+            } else {
+                router.push("/register?success=false");
+                console.log("Error:", responseData);
+            }
+        } catch (error) {
+            console.error("Request failed:", error);
+            router.push("/register?success=false");
+        } finally {
+            setLoading(false);
         }
-
-        await fetch("/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...data,
-                avatar,
-            }),
-        });
     };
 
 
@@ -104,6 +129,59 @@ const CreateUser = () => {
     });
 
 
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
+
+
+    if (success === "true") {
+        return (
+            <div className='w-screen h-screen flex items-center justify-center p-6'>
+                <div className="max-w-[400px] rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+                    {/* Glass highlight */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
+
+                    <div className="relative rounded-full border border-white/30 bg-white/15 backdrop-blur-md md:p-4 p-2 shadow-lg">
+                        <Check className="md:size-14 size-10 text-white" />
+                    </div>
+
+                    <h3 className="relative text-center md:text-3xl text-xl font-semibold text-white">
+                        Successfully Registered
+                    </h3>
+
+                    <p className="relative text-center md:text-lg text-sm text-white/80">
+                        Thank You! You have successfully registered on our website.
+                        You can now get all the lead updates.
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
+    if (success === 'false') {
+        return (
+            <div className='w-screen h-screen flex items-center justify-center p-6'>
+                <div className="max-w-[400px] rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+                    {/* Glass highlight */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
+
+                    <div className="relative rounded-full border border-white/30 bg-white/15 backdrop-blur-md md:p-4 p-2 shadow-lg">
+                        <TriangleAlert className="md:size-14 size-10 text-white" />
+                    </div>
+
+                    <h3 className="relative text-center md:text-3xl text-xl font-semibold text-white">
+                        Something went wrong
+                    </h3>
+
+                    <p className="relative text-center md:text-lg text-sm text-white/80">
+                        User creation failed. Please try again later.
+                    </p>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex items-start justify-between gap-6'>
@@ -262,13 +340,13 @@ const CreateUser = () => {
                                             placeholder="ABC company,Restaurants...etc"
                                             {...register("dncList")}
                                         />
-                                        {
-                                            errors.dncList && (
-                                                <p className="text-sm text-red-500">
-                                                    {errors.dncList.message}
-                                                </p>
-                                            )
-                                        }
+                                    </Field>
+                                    <Field>
+                                        <FieldLabel htmlFor="business">Business You Cover</FieldLabel>
+                                        <Textarea
+                                            placeholder="ABC company,Restaurants...etc"
+                                            {...register("business")}
+                                        />
                                     </Field>
                                     <div className='flex items-center justify-between gap-2'>
                                         <Field>

@@ -88,6 +88,7 @@ const RegisterPage = () => {
                 },
             ],
             licensed: false,
+            business: "",
         },
     });
 
@@ -346,13 +347,13 @@ const RegisterPage = () => {
                                             placeholder="ABC company,Restaurants...etc"
                                             {...register("dncList")}
                                         />
-                                        {
-                                            errors.dncList && (
-                                                <p className="text-sm text-red-500">
-                                                    {errors.dncList.message}
-                                                </p>
-                                            )
-                                        }
+                                    </Field>
+                                    <Field>
+                                        <FieldLabel htmlFor="business">Business You Cover</FieldLabel>
+                                        <Textarea
+                                            placeholder="ABC company,Restaurants...etc"
+                                            {...register("business")}
+                                        />
                                     </Field>
                                     <div className='flex items-center justify-between gap-2'>
                                         <Field>
