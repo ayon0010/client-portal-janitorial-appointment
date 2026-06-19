@@ -129,7 +129,6 @@ const RegisterPage = () => {
             }
         } catch (error) {
             console.log(error);
-
             console.error("Request failed:", error);
             router.push("/register?success=false");
         }
@@ -562,7 +561,7 @@ const RegisterPage = () => {
                                             checked={!!field.value}
                                             onCheckedChange={(val) => field.onChange(!!val)}
                                         />
-                                        <Label>Have you company licensed & insured?</Label>
+                                        <Label>Have your company licensed & insured?</Label>
                                     </div>
                                 )}
                             />
