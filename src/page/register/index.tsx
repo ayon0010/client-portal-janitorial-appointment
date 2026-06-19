@@ -315,7 +315,7 @@ const RegisterPage = () => {
                                                     )}
                                                 </Field>
                                                 <Field>
-                                                    <FieldLabel htmlFor="zipCodes">Service States (Zip Code)</FieldLabel>
+                                                    <FieldLabel htmlFor="zipCodes">Service Area (Zip Code) (Use coma to seperate)</FieldLabel>
                                                     <Controller
                                                         control={control}
                                                         name={`additionalStates.${index}.zipCodes`}

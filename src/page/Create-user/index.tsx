@@ -299,7 +299,7 @@ const CreateUser = () => {
                                                     )}
                                                 </Field>
                                                 <Field>
-                                                    <FieldLabel htmlFor="zipCodes">Service States (Zip Code)</FieldLabel>
+                                                    <FieldLabel htmlFor="zipCodes">Service area (Zip Code) (Use Coma to seprate)</FieldLabel>
                                                     <Controller
                                                         control={control}
                                                         name={`additionalStates.${index}.zipCodes`}
