@@ -39,7 +39,9 @@ export const createUserSchema = z.object({
         z.object({
             state: z.string().min(1, "State is required"),
             city: z.string().min(1, "City is required"),
-            zipCodes: z.array(z.string().min(1)).min(1, "At least one zip required"),
+            zipCodes: z.array(z.string())
+                .transform((val) => val.filter((zip) => zip.trim() !== ""))
+                .pipe(z.array(z.string().min(1)).min(1, "At least one zip required")),
         })
     ).min(1, "At least one state is required"),
 

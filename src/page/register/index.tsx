@@ -31,7 +31,6 @@ import { Label } from '@/components/ui/label'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Check } from "lucide-react";
 import Loader from '@/components/ui/Loader'
-import { Status } from '@prisma/client'
 
 
 
@@ -95,6 +94,10 @@ const RegisterPage = () => {
 
     const onSubmit = async (data: CreateUserFormValues) => {
         setLoading(true);
+
+
+        console.log('clicked', data);
+
         try {
             let avatar = "";
 
@@ -110,7 +113,6 @@ const RegisterPage = () => {
                 body: JSON.stringify({
                     ...data,
                     avatar,
-                    status: Status.HOLD
                 }),
             });
 
@@ -122,6 +124,8 @@ const RegisterPage = () => {
                 console.log("Error:", responseData);
             }
         } catch (error) {
+            console.log(error);
+
             console.error("Request failed:", error);
             router.push("/register?success=false");
         } finally {
@@ -193,7 +197,10 @@ const RegisterPage = () => {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='flex md:flex-row flex-col items-start justify-between md:gap-6 gap-4 md:p-10 p-6'>
+        <form onSubmit={handleSubmit(
+            onSubmit,
+            (errors) => console.log("🚨 FORM VALIDATION FAILED:", errors) // 👈 Add this!
+        )} className='flex md:flex-row flex-col items-start justify-between md:gap-6 gap-4 md:p-10 p-6'>
             <div className='md:w-[65%] w-full'>
                 <Card className='w-full'>
                     <div className='flex md:flex-row flex-col items-start justify-between w-full md:gap-0 gap-10'>

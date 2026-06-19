@@ -7,6 +7,9 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { password, email, ...data } = body;
 
+        console.log(data);
+        
+
         if (!password) {
             return NextResponse.json(
                 { message: 'Password is required' },
