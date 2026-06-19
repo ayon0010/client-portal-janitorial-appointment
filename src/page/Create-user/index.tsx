@@ -305,12 +305,7 @@ const CreateUser = () => {
                                                         name={`additionalStates.${index}.zipCodes`}
                                                         render={({ field }) => (
                                                             <Textarea
-                                                                onInput={(e) => {
-                                                                    const target = e.currentTarget;
-                                                                    target.style.height = "auto";
-                                                                    target.style.height = `${target.scrollHeight}px`;
-                                                                }}
-                                                                className="resize-none overflow-hidden min-h-[80px]"
+                                                                className="w-full min-w-0 break-all whitespace-pre-wrap"
                                                                 value={(field.value ?? []).join(",")}
                                                                 placeholder='10001,10002'
                                                                 onChange={(e) =>
