@@ -34,7 +34,7 @@ const Loader: React.FC<LoaderProps> = ({
 
     return (
         <div className='absolute inset-0 z-100'>
-            <div role="status" aria-live="polite" className='w-screen h-screen flex items-center justify-center'>
+            <div role="status" aria-live="polite" className='w-full h-full flex items-center justify-center'>
                 <div className="relative w-fit h-fit flex items-center justify-center">
                     <div className={`absolute rounded-full bg-indigo-500/10 animate-ping delay-150 
                         ${size === 'sm' ? 'w-20 h-20' : size === 'md' ? 'w-36 h-36' : 'w-40 h-40'}`}

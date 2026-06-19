@@ -110,15 +110,15 @@ const CreateUser = () => {
             const responseData = await response.json();
             if (response.ok) {
                 router.push("/register?success=true");
+                setLoading(false);
             } else {
                 router.push("/register?success=false");
                 console.log("Error:", responseData);
+                setLoading(false);
             }
         } catch (error) {
             console.error("Request failed:", error);
             router.push("/register?success=false");
-        } finally {
-            setLoading(false);
         }
     };
 
