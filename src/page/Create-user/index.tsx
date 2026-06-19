@@ -24,7 +24,7 @@ import { Check, Trash, TriangleAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateUserFormValues, createUserSchema } from '@/lib/schema/register'
+import { CreateUserFormValues, createUserSchema, toCreateUserData } from '@/lib/schema/register'
 import { uploadToImageBB } from '@/lib/uploadToImgBB'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
@@ -79,7 +79,7 @@ const CreateUser = () => {
                 {
                     state: "",
                     city: "",
-                    zipCodes: [],
+                    zipCodes: "",
                 },
             ],
             licensed: true,
@@ -89,6 +89,9 @@ const CreateUser = () => {
 
     const onSubmit = async (data: CreateUserFormValues) => {
         setLoading(true);
+
+        const payload = toCreateUserData(data);
+
         try {
             let avatar = "";
 
@@ -102,7 +105,7 @@ const CreateUser = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    ...data,
+                    ...payload,
                     avatar,
                 }),
             });
@@ -306,15 +309,9 @@ const CreateUser = () => {
                                                         render={({ field }) => (
                                                             <Textarea
                                                                 className="w-full min-w-0 break-all whitespace-pre-wrap"
-                                                                value={(field.value ?? []).join(",")}
+                                                                value={field.value ?? ""}
                                                                 placeholder='10001,10002'
-                                                                onChange={(e) =>
-                                                                    field.onChange(
-                                                                        e.target.value
-                                                                            .split(",")
-                                                                            .map((z) => z.trim())
-                                                                    )
-                                                                }
+                                                                onChange={field.onChange}
                                                             />
                                                         )}
                                                     />

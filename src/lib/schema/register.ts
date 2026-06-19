@@ -35,19 +35,42 @@ export const createUserSchema = z.object({
 
     max: z.string().optional(),
 
-    additionalStates: z.array(
-        z.object({
-            state: z.string().min(1, "State is required"),
-            city: z.string().min(1, "City is required"),
-            zipCodes: z.array(z.string())
-                .transform((val) => val.filter((zip) => zip.trim() !== ""))
-                .pipe(z.array(z.string().min(1)).min(1, "At least one zip required")),
-        })
-    ).min(1, "At least one state is required"),
+    additionalStates: z
+        .array(
+            z.object({
+                state: z.string().min(1, "State is required"),
+                city: z.string().min(1, "City is required"),
+                // Stored as a plain comma-separated string in the form
+                zipCodes: z.string().min(1, "At least one zip code is required"),
+            })
+        )
+        .min(1, "At least one state is required"),
 
     licensed: z.boolean(),
 
     business: z.string().optional()
 });
-
 export type CreateUserFormValues = z.infer<typeof createUserSchema>;
+
+
+export type CreateUserData = Omit<CreateUserFormValues, "additionalStates"> & {
+    additionalStates: {
+        state: string;
+        city: string;
+        zipCodes: string[];
+    }[];
+};
+
+
+export function toCreateUserData(values: CreateUserFormValues): CreateUserData {
+    return {
+        ...values,
+        additionalStates: values.additionalStates.map((s) => ({
+            ...s,
+            zipCodes: s.zipCodes
+                .split(",")
+                .map((z) => z.trim())
+                .filter(Boolean),
+        })),
+    };
+}

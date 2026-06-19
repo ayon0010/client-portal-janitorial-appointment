@@ -24,7 +24,6 @@ import { Trash, TriangleAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateUserFormValues, createUserSchema } from '@/lib/schema/register'
 import { uploadToImageBB } from '@/lib/uploadToImgBB'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
@@ -32,6 +31,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Check } from "lucide-react";
 import Loader from '@/components/ui/Loader'
 import { Status } from '@prisma/client'
+import { CreateUserFormValues, createUserSchema, toCreateUserData } from '@/lib/schema/register'
 
 
 
@@ -85,7 +85,7 @@ const RegisterPage = () => {
                 {
                     state: "",
                     city: "",
-                    zipCodes: [],
+                    zipCodes: "",  // ✅ plain string — matches schema
                 },
             ],
             licensed: false,
@@ -97,7 +97,7 @@ const RegisterPage = () => {
         setLoading(true);
 
 
-        console.log('clicked', data);
+        const payload = toCreateUserData(data);
 
         try {
             let avatar = "";
@@ -112,7 +112,7 @@ const RegisterPage = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    ...data,
+                    ...payload,
                     avatar,
                     status: Status.HOLD
                 }),
@@ -324,15 +324,9 @@ const RegisterPage = () => {
                                                         render={({ field }) => (
                                                             <Textarea
                                                                 className="w-full min-w-0 break-all whitespace-pre-wrap"
-                                                                value={(field.value ?? []).join(",")}
+                                                                value={field.value ?? ""}
                                                                 placeholder='10001,10002'
-                                                                onChange={(e) =>
-                                                                    field.onChange(
-                                                                        e.target.value
-                                                                            .split(",")
-                                                                            .map((z) => z.trim())
-                                                                    )
-                                                                }
+                                                                onChange={field.onChange}
                                                             />
                                                         )}
                                                     />
