@@ -31,6 +31,7 @@ import { Label } from '@/components/ui/label'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Check } from "lucide-react";
 import Loader from '@/components/ui/Loader'
+import { Status } from '@prisma/client'
 
 
 
@@ -113,6 +114,7 @@ const RegisterPage = () => {
                 body: JSON.stringify({
                     ...data,
                     avatar,
+                    status: Status.HOLD
                 }),
             });
 
