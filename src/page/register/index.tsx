@@ -20,7 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import placeHolder from "@/../public/images.png"
 import Image from 'next/image'
-import { Trash } from 'lucide-react'
+import { Trash, TriangleAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,7 +39,6 @@ const RegisterPage = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [image, setImage] = useState("");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [status, setStatus] = useState(false);
     const [loading, setLoading] = useState(false);
 
 
@@ -94,7 +93,6 @@ const RegisterPage = () => {
 
     const onSubmit = async (data: CreateUserFormValues) => {
         setLoading(true);
-
         try {
             let avatar = "";
 
@@ -114,19 +112,15 @@ const RegisterPage = () => {
             });
 
             const responseData = await response.json();
-
-            setStatus(response.ok);
-
             if (response.ok) {
                 router.push("/register?success=true");
             } else {
-                alert("Something went wrong")
+                router.push("/register?success=false");
                 console.log("Error:", responseData);
             }
-
         } catch (error) {
             console.error("Request failed:", error);
-            setStatus(false);
+            router.push("/register?success=false");
         } finally {
             setLoading(false);
         }
@@ -146,7 +140,7 @@ const RegisterPage = () => {
     }
 
 
-    if (success && status) {
+    if (success === "true") {
         return (
             <div className='w-screen h-screen flex items-center justify-center p-6'>
                 <div className="max-w-[400px] rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
@@ -164,6 +158,29 @@ const RegisterPage = () => {
                     <p className="relative text-center md:text-lg text-sm text-white/80">
                         Thank You! You have successfully registered on our website.
                         You can now get all the lead updates.
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
+    if (success === 'false') {
+        return (
+            <div className='w-screen h-screen flex items-center justify-center p-6'>
+                <div className="max-w-[400px] rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+                    {/* Glass highlight */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
+
+                    <div className="relative rounded-full border border-white/30 bg-white/15 backdrop-blur-md md:p-4 p-2 shadow-lg">
+                        <TriangleAlert className="md:size-14 size-10 text-white" />
+                    </div>
+
+                    <h3 className="relative text-center md:text-3xl text-xl font-semibold text-white">
+                        Something went wrong
+                    </h3>
+
+                    <p className="relative text-center md:text-lg text-sm text-white/80">
+                        User creation failed. Please try again later.
                     </p>
                 </div>
             </div>
