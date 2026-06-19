@@ -342,7 +342,7 @@ const RegisterPage = () => {
                                     <Button
                                         type="button"
                                         onClick={() =>
-                                            append({ state: "", city: "", zipCodes: [] })
+                                            append({ state: "", city: "", zipCodes: "" })
                                         }
                                     >
                                         + Add More States
