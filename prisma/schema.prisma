@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider      = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -64,6 +64,8 @@ model User {
   licensed Boolean
 
   leads Lead[]
+
+  business String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
