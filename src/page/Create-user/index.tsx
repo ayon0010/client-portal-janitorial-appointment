@@ -305,6 +305,12 @@ const CreateUser = () => {
                                                         name={`additionalStates.${index}.zipCodes`}
                                                         render={({ field }) => (
                                                             <Textarea
+                                                                onInput={(e) => {
+                                                                    const target = e.currentTarget;
+                                                                    target.style.height = "auto";
+                                                                    target.style.height = `${target.scrollHeight}px`;
+                                                                }}
+                                                                className="resize-none overflow-hidden min-h-[80px]"
                                                                 value={(field.value ?? []).join(",")}
                                                                 placeholder='10001,10002'
                                                                 onChange={(e) =>
@@ -337,6 +343,7 @@ const CreateUser = () => {
                                     <Field>
                                         <FieldLabel htmlFor="dncList">DNC List</FieldLabel>
                                         <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
                                             placeholder="ABC company,Restaurants...etc"
                                             {...register("dncList")}
                                         />
@@ -344,6 +351,7 @@ const CreateUser = () => {
                                     <Field>
                                         <FieldLabel htmlFor="business">Business You Cover</FieldLabel>
                                         <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
                                             placeholder="ABC company,Restaurants...etc"
                                             {...register("business")}
                                         />
@@ -447,15 +455,20 @@ const CreateUser = () => {
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor='requirment'>Minimum Requirment</FieldLabel>
-                                        <Textarea id='requirment' {...register("requirment")} placeholder='Your minimum requirement' />
+                                        <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
+                                            id='requirment' {...register("requirment")} placeholder='Your minimum requirement' />
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor='max'>Maximum Requirment</FieldLabel>
-                                        <Textarea id='max' {...register("max")} placeholder='Your Maximum requirement' />
+                                        <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
+                                            id='max' {...register("max")} placeholder='Your Maximum requirement' />
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor='note'>Additional Note</FieldLabel>
                                         <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
                                             id="note"
                                             placeholder="Aditional Note..."
                                             {...register("note")}

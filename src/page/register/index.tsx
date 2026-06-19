@@ -312,6 +312,7 @@ const RegisterPage = () => {
                                                         name={`additionalStates.${index}.zipCodes`}
                                                         render={({ field }) => (
                                                             <Textarea
+                                                                className="w-full min-w-0 break-all whitespace-pre-wrap"
                                                                 value={(field.value ?? []).join(",")}
                                                                 placeholder='10001,10002'
                                                                 onChange={(e) =>
@@ -344,6 +345,7 @@ const RegisterPage = () => {
                                     <Field>
                                         <FieldLabel htmlFor="dncList">DNC List</FieldLabel>
                                         <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
                                             placeholder="ABC company,Restaurants...etc"
                                             {...register("dncList")}
                                         />
@@ -351,6 +353,7 @@ const RegisterPage = () => {
                                     <Field>
                                         <FieldLabel htmlFor="business">Business You Cover</FieldLabel>
                                         <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
                                             placeholder="ABC company,Restaurants...etc"
                                             {...register("business")}
                                         />
@@ -454,15 +457,20 @@ const RegisterPage = () => {
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor='requirment'>Minimum Requirment</FieldLabel>
-                                        <Textarea id='requirment' {...register("requirment")} placeholder='Your minimum requirement' />
+                                        <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
+                                            id='requirment' {...register("requirment")} placeholder='Your minimum requirement' />
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor='max'>Maximum Requirment</FieldLabel>
-                                        <Textarea id='max' {...register("max")} placeholder='Your Maximum requirement' />
+                                        <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
+                                            id='max' {...register("max")} placeholder='Your Maximum requirement' />
                                     </Field>
                                     <Field>
                                         <FieldLabel htmlFor='note'>Additional Note</FieldLabel>
                                         <Textarea
+                                            className="w-full min-w-0 break-all whitespace-pre-wrap"
                                             id="note"
                                             placeholder="Aditional Note..."
                                             {...register("note")}

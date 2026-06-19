@@ -106,6 +106,7 @@ const LeadUpload = () => {
                             <FieldLabel>Lead Info</FieldLabel>
 
                             <Textarea
+                                className="w-full min-w-0 break-all whitespace-pre-wrap"
                                 placeholder="Upload your lead here"
                                 {...register("lead")}
                             />
