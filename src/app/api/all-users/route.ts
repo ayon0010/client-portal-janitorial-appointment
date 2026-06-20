@@ -4,7 +4,11 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
     try {
         // Fetch all users from the database
-        const getAllUsers = await prisma.user.findMany();
+        const getAllUsers = await prisma.user.findMany({
+            include: {
+                leads: true
+            }
+        });
 
         // Return the users in the JSON response with a 200 OK status
         return NextResponse.json(
